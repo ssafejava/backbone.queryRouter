@@ -718,6 +718,10 @@ var QueryHistory = Backbone.History.extend( /** @lends QueryHistory# **/{
    */
   query: Backbone.NestedModel ? new Backbone.NestedModel() : new Backbone.Model(),
 
+  getBaseRoute: function() {
+    return this._stripQuery(Backbone.history.fragment);
+  },
+
   /**
    * Parse a fragment into a query object and call handlers matching.
    * @param {String} fragment Route fragment.
@@ -833,10 +837,15 @@ var QueryHistory = Backbone.History.extend( /** @lends QueryHistory# **/{
    * Reset the internal query model to a certain state. Performs set() and unset() internally
    * to reset the model's attributes to the correct state, while firing the correct events.
    * Similar to Backbone.Collection.reset(), but with model attributes rather than models.
+   * @paramset Query Object
    * @param {Object} queryObject New query object.
+   * @paramset Query String
+   * @param {String} queryString New query string.
    */
   resetQuery: function(queryObject, options) {
+    // Alternate usage
     if (_.isString(queryObject)) {
+      if (queryObject.indexOf('?') === -1) queryObject = '?' + queryObject;
       queryObject = this._fragmentToQueryObject(queryObject);
     }
     if (!options) options = {};
