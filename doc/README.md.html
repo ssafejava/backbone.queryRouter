@@ -37,10 +37,10 @@
         <a href="#helper%20functions">Helper Functions</a>
       </div>
       <div class="heading h3">
-        <a href="#backbone.history.navigatebase">Backbone.history.navigateBase</a>
+        <a href="#backbone.history.navigatebase(string%20route%2C%20object%20options)">Backbone.history.navigateBase(String route, Object options)</a>
       </div>
       <div class="heading h3">
-        <a href="#backbone.history.query.(set%7Cunset%7Cclear)">Backbone.history.query.(set|unset|clear)</a>
+        <a href="#backbone.history.query">Backbone.history.query</a>
       </div>
       <div class="heading h3">
         <a href="#backbone.history.resetquery">Backbone.history.resetQuery</a>
@@ -193,10 +193,10 @@ on the client and the server.</p>
 <p>Backbone.queryRouter comes with a few helper functions that help you modify the current URL.</p>
 
 
-<div class="pilwrap" id="backbone.history.navigatebase">
+<div class="pilwrap" id="backbone.history.navigatebase(string%20route%2C%20object%20options)">
   <h3>
-    <a href="#backbone.history.navigatebase" name="backbone.history.navigatebase" class="pilcrow">&#182;</a>
-    Backbone.history.navigateBase
+    <a href="#backbone.history.navigatebase(string%20route%2C%20object%20options)" name="backbone.history.navigatebase(string%20route%2C%20object%20options)" class="pilcrow">&#182;</a>
+    Backbone.history.navigateBase(String route, Object options)
   </h3>
 </div>
 
@@ -208,18 +208,27 @@ to change the current query. No query handlers will be fired and the query in th
 will remain unchanged.</p>
 
 
-<div class="pilwrap" id="backbone.history.query.(set%7Cunset%7Cclear)">
+<div class="pilwrap" id="backbone.history.query">
   <h3>
-    <a href="#backbone.history.query.(set%7Cunset%7Cclear)" name="backbone.history.query.(set%7Cunset%7Cclear)" class="pilcrow">&#182;</a>
-    Backbone.history.query.(set|unset|clear)
+    <a href="#backbone.history.query" name="backbone.history.query" class="pilcrow">&#182;</a>
+    Backbone.history.query
   </h3>
 </div>
 
 
+<ul>
+<li><code>Backbone.history.query.set(attributes, [options])</code></li>
+<li><code>Backbone.history.query.unset(attributes, [options])</code></li>
+<li><code>Backbone.history.query.clear()</code></li>
+<li><code>Backbone.history.query.toString()</code></li>
+</ul>
+
 <p>The current query is attached to Backbone.history as a simple Backbone.Model. It supports
 all of the usual Backbone.Model methods and events. Changing attributes on the query
 will automatically fire the associated query handlers, much like calling 
-<code>Backbone.history.navigate</code> with <code>{trigger: true}</code>.</p>
+<code>Backbone.history.navigate(route, {trigger:true})</code>.</p>
+
+<p>Call <code>Backbone.history.query.toString()</code> to get the current query string.</p>
 
 
 <div class="pilwrap" id="backbone.history.resetquery">

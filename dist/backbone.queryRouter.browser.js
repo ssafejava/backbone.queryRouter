@@ -697,6 +697,10 @@ var QueryHistory = Backbone.History.extend( /** @lends QueryHistory# **/{
     this.previousQuery = {};
     this.queryHandlers = [];
     this.listenTo(this.query, 'change', this.onQueryModelChange);
+    // Bind a nice toString() method for use on the query object.
+    this.query.toString = function() {
+      return querystring.stringify(this.attributes);
+    };
     Backbone.History.call(this);
   },
 
@@ -803,7 +807,7 @@ var QueryHistory = Backbone.History.extend( /** @lends QueryHistory# **/{
   onQueryModelChange: function(model, options) {
     var fragment = this.fragment || '';
     var oldQS = querystring.stringify(this.previousQuery);
-    var newQS = querystring.stringify(model.toJSON());
+    var newQS = model.toString();
 
     // If the old querystring exists, replace it with the new one, otherwise just append.
     if (oldQS) {
